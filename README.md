@@ -1,15 +1,15 @@
-# StockPortfolio for MoneyMoney
-Create a custom portfolio with US stocks and fetch the current stock value via finnhub.io
+# StockPortfolio (USD) for MoneyMoney
+Create a custom portfolio with US stocks and fetch the current stock value via finnhub.io(https://finnhub.io/). For conversion to EUR, see https://github.com/tobiasdueser/MoneyMoney-StockPortfolio.
 
 ![MoneyMoney screenshot with StockPortfolio Balance](screens/StockPortfolio-balance.png)
 
 ## Setup
 
-1. Download the extension via the [GitHub releases page](https://github.com/tobiasdueser/MoneyMoney-StockPortfolio/releases/tag/v1.1)
-2. Once downloaded, move `StockPortfolio.lua` to your MoneyMoney Extensions folder.
-3. Create a free [finnhub.io](https://finnhub.io/) account and copy the API-key from [finnhub.io/dashboard](https://finnhub.io/dashboard)
-4. Add a new account with the type `StockPortfolio`
-5. Use the stock symbols comma seperated with the number of shares in brackets as user name. Example: `AAPL(0.7),TSLA(1.5)`
+1. Download the extension via the [GitHub releases page](https://github.com/guidezpl/MoneyMoney-StockPortfolio/releases).
+2. Once downloaded, move `StockPortfolio_USD.lua` to your MoneyMoney Extensions folder.
+3. Create a free [finnhub.io](https://finnhub.io/) account and copy the API-key from [finnhub.io/dashboard](https://finnhub.io/dashboard).
+4. Add a new account with the type `StockPortfolio`.
+5. Use the stock symbols comma separated with the number of shares in brackets as user name. Example: `AAPL(0.7),TSLA(1.5)`
 6. Use the free Finnhub API key as password. Example: `5r8ufep1br56mlvrhj6g`
 
 ![MoneyMoney screenshot with StockPortfolio Setup](screens/StockPortfolio-setup.png)

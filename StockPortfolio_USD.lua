@@ -1,6 +1,5 @@
--- Inofficial StockPortfolio Extension for MoneyMoney
+-- Unofficial StockPortfolio (USD) Extension for MoneyMoney
 -- Fetches Stock price via finnhub.io API
--- Fetches Current EUR/US exchange rate via exchangeratesapi.io API
 -- Returns stocks as securities
 --
 -- Username: Stock symbol comma seperated with number of shares in brackets (Example: "AAPL(0.7),TSLA(1.5)")
@@ -10,6 +9,7 @@
 
 -- Original work Copyright (c) 2017 Jacubeit
 -- Modified work Copyright 2020 tobiasdueser
+-- Modified work Copyright 2021 guidezpl
 
 -- Permission is hereby granted, free of charge, to any person obtaining a copy
 -- of this software and associated documentation files (the "Software"), to deal
@@ -34,16 +34,16 @@ WebBanking{
   version = 1.0,
   country = "de",
   description = "Include your stock portfolio in MoneyMoney by providing the stock symbols and the number of shares as username [Example: AAPL(0.3),SHOP(1.4)] and a free Finnhub API-Key as password.",
-  services= { "StockPortfolio" }
+  services= { "StockPortfolio (USD)" }
 }
 
 local stockSymbols
 local connection = Connection()
-local currency = "EUR"
+local currency = "USD"
 local finnhubToken
 
 function SupportsBank (protocol, bankCode)
-  return protocol == ProtocolWebBanking and bankCode == "StockPortfolio"
+  return protocol == ProtocolWebBanking and bankCode == "StockPortfolio (USD)"
 end
 
 function InitializeSession (protocol, bankCode, username, username2, password, username3)
@@ -54,7 +54,7 @@ end
 function ListAccounts (knownAccounts)
   local account = {
     name = "StockPortfolio",
-    accountNumber = "StockPortfolio",
+    accountNumber = "StockPortfolio (USD)",
     currency = currency,
     portfolio = true,
     type = "AccountTypePortfolio"
@@ -65,8 +65,6 @@ end
 
 function RefreshAccount (account, since)
   local s = {}
-  -- get EUR -> USD exchange Rate
-  EURtoUSDexchangeRate = requestCurrentExchangeRate()
 
   for stock in string.gmatch(stockSymbols, '([^,]+)') do
 
@@ -74,8 +72,10 @@ function RefreshAccount (account, since)
     quantity=stock:match("%((%S+)%)")
     stockName=stock:match('([^(]+)')
 
-    -- request current stock price and convert from USD to EUR
-    currentStockPrice = requestCurrentStockPrice(stockName) / EURtoUSDexchangeRate
+    print(stockName)
+
+    -- request current stock price
+    currentStockPrice = requestCurrentStockPrice(stockName)
 
     s[#s+1] = {
       name = stockName,
@@ -100,20 +100,10 @@ function requestCurrentStockPrice(stockSymbol)
   return json:dictionary()["c"]
 end
 
-function requestCurrentExchangeRate()
-  response = connection:request("GET", exchangeRateRequestUrl(), {})
-  json = JSON(response)
-  return json:dictionary()["rates"] ["USD"]
-end
-
 
 -- Helper Functions
 function stockPriceRequestUrl(stockSymbol)
   return "https://finnhub.io/api/v1/quote?symbol=" .. stockSymbol .. "&token=" .. finnhubToken
 end
 
-function exchangeRateRequestUrl()
-  return "https://api.exchangeratesapi.io/latest?symbols=USD,GBP"
-end
-
--- SIGNATURE: MCwCFFz66gbK9vbTX4zhuTIXXs+VYi3DAhQN+zPkvtErPy0wYPOYSEQ7Vf7u8A==
+-- SIGNATURE: XXX==
