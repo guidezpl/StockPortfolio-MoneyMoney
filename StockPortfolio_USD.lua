@@ -72,8 +72,6 @@ function RefreshAccount (account, since)
     quantity=stock:match("%((%S+)%)")
     stockName=stock:match('([^(]+)')
 
-    print(stockName)
-
     -- request current stock price
     currentStockPrice = requestCurrentStockPrice(stockName)
 
