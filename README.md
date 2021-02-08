@@ -1,5 +1,5 @@
 # StockPortfolio (USD) for MoneyMoney
-Create a custom portfolio with US stocks and fetch the current stock value via finnhub.io(https://finnhub.io/). For conversion to EUR, see https://github.com/tobiasdueser/MoneyMoney-StockPortfolio.
+Create a custom portfolio with US stocks and fetch the current stock value via [finnhub.io](https://finnhub.io/). For conversion to EUR, see https://github.com/tobiasdueser/MoneyMoney-StockPortfolio.
 
 ![MoneyMoney screenshot with StockPortfolio Balance](screens/StockPortfolio-balance.png)
 
