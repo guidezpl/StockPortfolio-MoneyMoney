@@ -8,7 +8,7 @@ Create a custom portfolio with US stocks and fetch the current stock value via [
 1. Download the extension via the [GitHub releases page](https://github.com/guidezpl/MoneyMoney-StockPortfolio/releases).
 2. Once downloaded, move `StockPortfolio_USD.lua` to your MoneyMoney Extensions folder.
 3. Create a free [finnhub.io](https://finnhub.io/) account and copy the API-key from [finnhub.io/dashboard](https://finnhub.io/dashboard).
-4. Add a new account with the type `StockPortfolio`.
+4. Add a new account with the type `StockPortfolio (USD)`.
 5. Use the stock symbols comma separated with the number of shares in brackets as user name. Example: `AAPL(0.7),TSLA(1.5)`
 6. Use the free Finnhub API key as password. Example: `5r8ufep1br56mlvrhj6g`
 
