@@ -104,4 +104,4 @@ function stockPriceRequestUrl(stockSymbol)
   return "https://finnhub.io/api/v1/quote?symbol=" .. stockSymbol .. "&token=" .. finnhubToken
 end
 
--- SIGNATURE: XXX==
+-- SIGNATURE: MCwCFBGzn5kTt+nDFcvNhjk53giayMgfAhQ4hKUY5KyLt8B/pynesLhIfgH6bg==
