@@ -120,6 +120,7 @@ WebBanking{
   end
 
   function exchangeRateRequestUrl()
-    return
+    return "https://finnhub.io/api/v1/forex/rates?token=" .. finnhubToken
+  end
 
   -- SIGNATURE: XXX
