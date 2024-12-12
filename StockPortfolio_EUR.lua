@@ -122,4 +122,4 @@ WebBanking{
   function exchangeRateRequestUrl()
     return
 
-  -- SIGNATURE: XXX==
+  -- SIGNATURE: XXX
