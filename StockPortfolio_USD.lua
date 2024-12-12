@@ -9,7 +9,7 @@
 
 -- Original work Copyright (c) 2017 Jacubeit
 -- Modified work Copyright 2020 tobiasdueser
--- Modified work Copyright 2021 guidezpl
+-- Modified work Copyright 2021, 2024 guidezpl
 
 -- Permission is hereby granted, free of charge, to any person obtaining a copy
 -- of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@
 
 
 WebBanking{
-  version = 1.0,
+  version = 1.3,
   country = "de",
   description = "Include your stock portfolio in MoneyMoney by providing the stock symbols and the number of shares as username [Example: AAPL(0.3),SHOP(1.4)] and a free Finnhub API-Key as password.",
   services= { "StockPortfolio (USD)" }
@@ -41,6 +41,7 @@ local stockSymbols
 local connection = Connection()
 local currency = "USD"
 local finnhubToken
+local stockPrices = {}  -- Stores fetched stock prices
 
 function SupportsBank (protocol, bankCode)
   return protocol == ProtocolWebBanking and bankCode == "StockPortfolio (USD)"
@@ -72,8 +73,12 @@ function RefreshAccount (account, since)
     quantity=stock:match("%((%S+)%)")
     stockName=stock:match('([^(]+)')
 
-    -- request current stock price
-    currentStockPrice = requestCurrentStockPrice(stockName)
+    -- Check if price already fetched, avoid redundant calls
+    local currentStockPrice = stockPrices[stockName]
+    if not currentStockPrice then
+      currentStockPrice = requestCurrentStockPrice(stockName)
+      stockPrices[stockName] = currentStockPrice
+    end
 
     s[#s+1] = {
       name = stockName,
@@ -88,6 +93,7 @@ function RefreshAccount (account, since)
 end
 
 function EndSession ()
+  stockPrices = {}  -- Clear cached prices for next session
 end
 
 
