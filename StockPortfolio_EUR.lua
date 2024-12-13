@@ -123,4 +123,4 @@ WebBanking{
     return "https://finnhub.io/api/v1/forex/rates?token=" .. finnhubToken
   end
 
-  -- SIGNATURE: XXX
+-- SIGNATURE: MC0CFQCakhHAKmE1uvc0ZPMmINOFknVZfwIUVLkCLqtYxQ2tLeLRqajI2NJ6xkM=
